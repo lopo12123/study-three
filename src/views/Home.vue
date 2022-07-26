@@ -5,6 +5,9 @@ import { BoxGeometry, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLR
 const threeContainer = ref<HTMLCanvasElement>()
 
 const doThree = () => {
+    const canvas = threeContainer.value
+    if(!canvas) return
+
     // 渲染器 - 与 canvas 绑定
     const renderer = new WebGLRenderer({
         canvas: threeContainer.value
@@ -14,7 +17,7 @@ const doThree = () => {
     const scene = new Scene()
 
     // 相机 - 需要添加到场景中
-    const camera = new PerspectiveCamera()
+    const camera = new PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000)
     camera.position.set(0, 0, 1)
     scene.add(camera)
 
