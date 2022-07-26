@@ -7,10 +7,6 @@ declare module '*.vue' {
     export default component
 }
 
-interface ImportMetaEnv {
-    readonly VITE_MAP_MODE: 'public' | 'private'
-}
-
 interface ImportMeta {
     readonly env: ImportMetaEnv
 }
