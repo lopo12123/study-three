@@ -27,7 +27,7 @@ const doThree = () => {
     // 渲染
     // renderer.render(scene, camera)
 
-    const animation = (time) => {
+    const animation = (time: number) => {
         cube.rotation.x = time / 2000
         cube.rotation.y = time / 1000
 
