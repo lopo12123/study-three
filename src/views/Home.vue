@@ -18,7 +18,7 @@ const doThree = () => {
     camera.position.set(0, 0, 1)
     scene.add(camera)
 
-    // 物体
+    // 物体 - 创建网格(形状+材质)
     const geometry = new BoxGeometry(0.2, 0.2, 0.2)
     const material = new MeshNormalMaterial()
     const cube = new Mesh(geometry, material)
