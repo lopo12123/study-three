@@ -9,9 +9,7 @@ const doThree = () => {
     if(!canvas) return
 
     // 渲染器 - 与 canvas 绑定
-    const renderer = new WebGLRenderer({
-        canvas: threeContainer.value
-    })
+    const renderer = new WebGLRenderer({ canvas: threeContainer.value })
 
     // 场景 - 光源、相机和各种物体的父容器
     const scene = new Scene()
@@ -28,8 +26,6 @@ const doThree = () => {
     scene.add(cube)
 
     // 渲染
-    // renderer.render(scene, camera)
-
     const animation = (time: number) => {
         cube.rotation.x = time / 2000
         cube.rotation.y = time / 1000
@@ -47,22 +43,13 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="home-view">
-        <canvas class="three-container" ref="threeContainer"/>
-    </div>
+    <canvas class="basic-usage-view" ref="threeContainer"/>
 </template>
 
 <style lang="scss" scoped>
-.home-view {
+.basic-usage-view {
     position: relative;
     width: 100%;
     height: 100%;
-
-    .three-container {
-        position: relative;
-        width: 400px;
-        height: 300px;
-        border: solid 1px #777;
-    }
 }
 </style>

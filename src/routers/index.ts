@@ -1,17 +1,31 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw, RouterOptions } from "vue-router";
-import Home from "@/views/Home.vue";
+import BasicUsage from "@/views/BasicUsage.vue";
 
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
-        name: 'Home',
-        component: Home
+        redirect: {
+            name: 'BasicUsage'
+        }
+    },
+    {
+        path: '/basic-usage',
+        name: 'BasicUsage',
+        component: BasicUsage
+    },
+    {
+        path: '/gltf-loader',
+        name: 'GLTFLoader',
+        component: () => import("@/views/GLTFLoader.vue")
     }
 ]
 
-const routerOptions: RouterOptions = {
+const router = createRouter({
     history: createWebHashHistory(),
     routes
-}
+})
 
-export const router = createRouter(routerOptions)
+export {
+    routes,
+    router
+}
