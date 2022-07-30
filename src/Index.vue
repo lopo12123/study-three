@@ -7,7 +7,7 @@ const route = useRoute()
 const router = useRouter()
 
 const activeItemName = computed(() => {
-    return route.matched[0].name
+    return route.matched[0]?.name
 })
 
 const menuItem = ref<string[]>(routes
