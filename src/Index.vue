@@ -1,9 +1,14 @@
 <script lang="ts" setup>
 import { routes } from "@/routers";
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { computed, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
+const route = useRoute()
 const router = useRouter()
+
+const activeItemName = computed(() => {
+    return route.matched[0].name
+})
 
 const menuItem = ref<string[]>(routes
     .filter(x => !!x.name)
@@ -17,8 +22,8 @@ const jumpTo = (name: string) => {
 <template>
     <div class="root-view">
         <div class="menu">
-            <div class="menu-item" :key="idx"
-                 v-for="(item, idx) in menuItem"
+            <div :class="['menu-item', activeItemName === item ? 'active-item' : '']"
+                 v-for="(item, idx) in menuItem" :key="idx"
                  @click="jumpTo(item)">
                 {{ item }}
             </div>
@@ -55,6 +60,10 @@ const jumpTo = (name: string) => {
             &:hover {
                 background-color: #ccc;
             }
+        }
+
+        .active-item {
+            background-color: #ccc;
         }
     }
 
