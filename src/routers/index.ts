@@ -17,6 +17,11 @@ const routes: RouteRecordRaw[] = [
         path: '/gltf-loader',
         name: 'GLTFLoader',
         component: () => import("@/views/GLTFLoader.vue")
+    },
+    {
+        path: '/object-3d',
+        name: 'Object3D',
+        component: () => import("@/views/Object3D.vue")
     }
 ]
 
