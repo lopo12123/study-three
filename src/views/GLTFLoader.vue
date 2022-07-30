@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // 场景、相机、渲染器
-import { PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import { AmbientLight, PerspectiveCamera, Scene, WebGLRenderer } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { onMounted, ref } from "vue";
 
@@ -26,7 +26,13 @@ const doThree = () => {
     loader.load(
         './src/models/monkey.gltf',
         (gltf) => {
+            // 猴头添加到场景
             scene.add(gltf.scene)
+
+            // 光源 - 猴头默认为反光材质, 即无光为黑色
+            const light = new AmbientLight(0xffffff)
+            scene.add(light)
+
             renderer.render(scene, camera)
 
             // 渲染
