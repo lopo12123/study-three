@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, shallowRef } from "vue";
 import {
     Line, LineBasicMaterial, LineLoop, LineSegments,
     Mesh,
@@ -51,10 +51,10 @@ const doThree = () => {
     const lineSegments = new LineSegments(geometry, new LineBasicMaterial({ color: 0xffffff, linewidth: 1 }))
     // lineSegments.position.x = 20
 
-    // scene.add(points)
+    scene.add(points)
     // scene.add(mesh)
     // scene.add(line)
-    scene.add(lineLoop)
+    // scene.add(lineLoop)
     // scene.add(lineSegments)
 
     // 渲染
@@ -68,15 +68,63 @@ const doThree = () => {
         renderer.render(scene, camera)
     }
     renderer.setAnimationLoop(animation)
+
+    return (show: 'points' | 'mesh' | 'line' | 'lineLoop' | 'lineSegments') => {
+        if(show === curr.value) return;
+
+        scene.clear()
+        curr.value = show
+
+        switch (show) {
+            case 'points':
+                scene.add(points)
+                break
+            case 'mesh':
+                scene.add(mesh)
+                break
+            case 'line':
+                scene.add(line)
+                break
+            case 'lineLoop':
+                scene.add(lineLoop)
+                break
+            case 'lineSegments':
+                scene.add(lineSegments)
+                break
+        }
+    }
 }
 
+const switchTo = ref(null)
+const curr = ref<'points' | 'mesh' | 'line' | 'lineLoop' | 'lineSegments'>('points')
+
 onMounted(() => {
-    doThree()
+    switchTo.value = doThree()
 })
 </script>
 
 <template>
-    <canvas class="object-3d-view" ref="threeContainer"/>
+    <div class="object-3d-view">
+        <div class="switch-btn-group">
+            <div :class="['btn', curr === 'points' ? 'curr' : '']"
+                 @click="switchTo?.('points')">points
+            </div>
+            <div :class="['btn', curr === 'mesh' ? 'curr' : '']"
+                 @click="switchTo?.('mesh')">mesh
+            </div>
+            <div :class="['btn', curr === 'line' ? 'curr' : '']"
+                 @click="switchTo?.('line')">line
+            </div>
+            <div :class="['btn', curr === 'lineLoop' ? 'curr' : '']"
+                 @click="switchTo?.('lineLoop')">lineLoop
+            </div>
+            <div :class="['btn', curr === 'lineSegments' ? 'curr' : '']"
+                 @click="switchTo?.('lineSegments')">
+                lineSegments
+            </div>
+        </div>
+        <canvas class="object-3d-canvas" ref="threeContainer"/>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -84,5 +132,45 @@ onMounted(() => {
     position: relative;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .object-3d-canvas {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .switch-btn-group {
+        position: absolute;
+        z-index: 10;
+        width: 400px;
+        height: 30px;
+        left: 0;
+        top: 0;
+        border: solid 1px #2da0ff;
+        background-color: #cccccc;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .btn {
+            position: relative;
+            height: 24px;
+            padding: 0 10px;
+            font-size: 12px;
+            border: solid 1px #001c33;
+            user-select: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .curr {
+            background-color: #2da0ff;
+        }
+    }
 }
 </style>
