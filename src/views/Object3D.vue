@@ -16,7 +16,7 @@ const threeContainer = ref<HTMLCanvasElement>()
 
 const doThree = () => {
     const canvas = threeContainer.value
-    if(!canvas) return
+    if(!canvas) return null
 
     // 渲染器 - 与 canvas 绑定
     const renderer = new WebGLRenderer({
@@ -95,7 +95,7 @@ const doThree = () => {
     }
 }
 
-const switchTo = ref(null)
+const switchTo = ref<((show: 'points' | 'mesh' | 'line' | 'lineLoop' | 'lineSegments') => void) | null>(null)
 const curr = ref<'points' | 'mesh' | 'line' | 'lineLoop' | 'lineSegments'>('points')
 
 onMounted(() => {
