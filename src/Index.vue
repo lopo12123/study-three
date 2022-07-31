@@ -12,7 +12,7 @@ const activeItemName = computed(() => {
 
 const menuItem = ref<string[]>(routes
     .filter(x => !!x.name)
-    .map(x => x.name))
+    .map(x => x.name as string))
 
 const jumpTo = (name: string) => {
     router.push({ name })

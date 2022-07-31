@@ -29,7 +29,7 @@ const doThree = () => {
 
     // 相机 - 需要添加到场景中
     const camera = new PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000)
-    camera.position.set(0, 0, 5)
+    camera.position.set(0, 0, 10)
     scene.add(camera)
 
     // 创建形状 - 环
