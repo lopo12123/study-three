@@ -1,6 +1,14 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import { BoxGeometry, Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import {
+    BoxGeometry,
+    Mesh,
+    MeshBasicMaterial,
+    MeshNormalMaterial,
+    PerspectiveCamera,
+    Scene,
+    WebGLRenderer
+} from "three";
 
 const threeContainer = ref<HTMLCanvasElement>()
 
@@ -17,7 +25,7 @@ const doThree = () => {
 
     // 物体
     const geometry = new BoxGeometry(1, 1, 1);
-    const material = new MeshBasicMaterial({ color: 0x2da0ff });
+    const material = new MeshNormalMaterial()
     const cube = new Mesh(geometry, material);
     scene.add(cube);
 
@@ -30,8 +38,8 @@ const doThree = () => {
 
     animate()
 
-    return (moveTo: 'x+' | 'x-' | 'y+' | 'y-' | 'z+' | 'z-') => {
-        switch (moveTo) {
+    return (operate: OperateType) => {
+        switch (operate) {
             case 'x+':
                 cube.position.x += 1
                 break
@@ -50,11 +58,30 @@ const doThree = () => {
             case 'z-':
                 cube.position.z -= 1
                 break
+            case 'rx+':
+                cube.rotation.x += 1
+                break
+            case 'rx-':
+                cube.rotation.x -= 1
+                break
+            case 'ry+':
+                cube.rotation.y += 1
+                break
+            case 'ry-':
+                cube.rotation.y -= 1
+                break
+            case 'rz+':
+                cube.rotation.z += 1
+                break
+            case 'rz-':
+                cube.rotation.z -= 1
+                break
         }
     }
 }
 
-const moveTo = ref<((moveTo: 'x+' | 'x-' | 'y+' | 'y-' | 'z+' | 'z-') => void) | null>(null)
+type OperateType = 'x+' | 'x-' | 'y+' | 'y-' | 'z+' | 'z-' | 'rx+' | 'rx-' | 'ry+' | 'ry-' | 'rz+' | 'rz-'
+const moveTo = ref<((operate: OperateType) => void) | null>(null)
 
 onMounted(() => {
     moveTo.value = doThree()
@@ -63,13 +90,21 @@ onMounted(() => {
 
 <template>
     <div class="camera-type-view">
-        <div class="switch-btn-group">
+        <div class="switch-btn-group line1">
             <div class="btn" @click="moveTo?.('x+')">x+</div>
             <div class="btn" @click="moveTo?.('x-')">x-</div>
             <div class="btn" @click="moveTo?.('y+')">y+</div>
             <div class="btn" @click="moveTo?.('y-')">y-</div>
             <div class="btn" @click="moveTo?.('z+')">z+</div>
             <div class="btn" @click="moveTo?.('z-')">z-</div>
+        </div>
+        <div class="switch-btn-group line2">
+            <div class="btn" @click="moveTo?.('rx+')">rx+</div>
+            <div class="btn" @click="moveTo?.('rx-')">rx-</div>
+            <div class="btn" @click="moveTo?.('ry+')">ry+</div>
+            <div class="btn" @click="moveTo?.('ry-')">ry-</div>
+            <div class="btn" @click="moveTo?.('rz+')">rz+</div>
+            <div class="btn" @click="moveTo?.('rz-')">rz-</div>
         </div>
         <canvas class="object-3d-canvas" ref="threeContainer"/>
     </div>
@@ -93,10 +128,9 @@ onMounted(() => {
     .switch-btn-group {
         position: absolute;
         z-index: 10;
-        width: 400px;
+        width: 300px;
         height: 30px;
         left: 0;
-        top: 0;
         border: solid 1px #2da0ff;
         background-color: #cccccc;
         display: flex;
@@ -119,6 +153,14 @@ onMounted(() => {
         .curr {
             background-color: #2da0ff;
         }
+    }
+
+    .line1 {
+        top: 0;
+    }
+
+    .line2 {
+        top: 30px;
     }
 }
 </style>
