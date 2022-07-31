@@ -12,7 +12,7 @@ const doThree = () => {
 
     // 渲染器 - 与 canvas 绑定
     const renderer = new WebGLRenderer({ canvas: threeContainer.value })
-    // renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight)
     renderer.setClearColor(0xffffff)
 
     // 场景 - 光源、相机和各种物体的父容器

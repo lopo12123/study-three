@@ -22,7 +22,17 @@ const routes: RouteRecordRaw[] = [
         path: '/object-3d',
         name: 'Object3D',
         component: () => import("@/views/Object3D.vue")
-    }
+    },
+    // {
+    //     path: '/camera-type',
+    //     name: 'CameraType',
+    //     component: () => import("@/views/CameraType.vue")
+    // },
+    {
+        path: '/operates',
+        name: 'Operates',
+        component: () => import("@/views/Operates.vue")
+    },
 ]
 
 const router = createRouter({
