@@ -88,7 +88,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="camera-type-view">
+    <div class="object-control-view">
         <div class="switch-btn-group move">
             <div class="btn" @click="moveTo?.('x+')">x+</div>
             <div class="btn" @click="moveTo?.('x-')">x-</div>
@@ -110,7 +110,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.camera-type-view {
+.object-control-view {
     position: relative;
     width: 100%;
     height: 100%;

@@ -24,9 +24,9 @@ const routes: RouteRecordRaw[] = [
         component: () => import("@/views/Object3D.vue")
     },
     {
-        path: '/control',
-        name: 'Control',
-        component: () => import("@/views/Control.vue")
+        path: '/object-control',
+        name: 'ObjectControl',
+        component: () => import("@/views/ObjectControl.vue")
     },
 ]
 
