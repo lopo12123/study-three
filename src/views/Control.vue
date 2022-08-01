@@ -18,7 +18,6 @@ const doThree = () => {
 
     const renderer = new WebGLRenderer({ canvas })
     renderer.setSize(canvas.clientWidth, canvas.clientHeight)
-    console.log(canvas.width, canvas.height)
 
     const scene = new Scene()
     const camera = new PerspectiveCamera()
@@ -90,7 +89,7 @@ onMounted(() => {
 
 <template>
     <div class="camera-type-view">
-        <div class="switch-btn-group line1">
+        <div class="switch-btn-group move">
             <div class="btn" @click="moveTo?.('x+')">x+</div>
             <div class="btn" @click="moveTo?.('x-')">x-</div>
             <div class="btn" @click="moveTo?.('y+')">y+</div>
@@ -98,7 +97,7 @@ onMounted(() => {
             <div class="btn" @click="moveTo?.('z+')">z+</div>
             <div class="btn" @click="moveTo?.('z-')">z-</div>
         </div>
-        <div class="switch-btn-group line2">
+        <div class="switch-btn-group rotate">
             <div class="btn" @click="moveTo?.('rx+')">rx+</div>
             <div class="btn" @click="moveTo?.('rx-')">rx-</div>
             <div class="btn" @click="moveTo?.('ry+')">ry+</div>
@@ -155,11 +154,11 @@ onMounted(() => {
         }
     }
 
-    .line1 {
+    .move {
         top: 0;
     }
 
-    .line2 {
+    .rotate {
         top: 30px;
     }
 }

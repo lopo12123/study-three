@@ -23,14 +23,9 @@ const routes: RouteRecordRaw[] = [
         name: 'Object3D',
         component: () => import("@/views/Object3D.vue")
     },
-    // {
-    //     path: '/camera-type',
-    //     name: 'CameraType',
-    //     component: () => import("@/views/CameraType.vue")
-    // },
     {
-        path: '/operates',
-        name: 'Operates',
+        path: '/control',
+        name: 'Control',
         component: () => import("@/views/Control.vue")
     },
 ]
