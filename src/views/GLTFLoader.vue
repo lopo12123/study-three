@@ -24,7 +24,7 @@ const doThree = () => {
 
     const loader = new GLTFLoader();
     loader.load(
-        './src/models/monkey.gltf',
+        './models/monkey.gltf',
         (gltf) => {
             // 猴头添加到场景
             scene.add(gltf.scene)
