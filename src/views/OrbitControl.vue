@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 import { onMounted, ref } from "vue";
 import { BoxGeometry, Mesh, MeshNormalMaterial, PerspectiveCamera, Scene, WebGLRenderer } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";

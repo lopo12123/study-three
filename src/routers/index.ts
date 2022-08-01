@@ -38,6 +38,11 @@ const routes: RouteRecordRaw[] = [
         name: 'OrbitControl',
         component: () => import("@/views/OrbitControl.vue")
     },
+    {
+        path: '/texture',
+        name: 'Texture',
+        component: () => import("@/views/Texture.vue")
+    },
 ]
 
 const router = createRouter({
