@@ -43,6 +43,11 @@ const routes: RouteRecordRaw[] = [
         name: 'Texture',
         component: () => import("@/views/Texture.vue")
     },
+    {
+        path: '/bloom',
+        name: 'Bloom',
+        component: () => import("@/views/Bloom.vue")
+    },
 ]
 
 const router = createRouter({
