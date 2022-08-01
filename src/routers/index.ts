@@ -28,6 +28,11 @@ const routes: RouteRecordRaw[] = [
         name: 'ObjectControl',
         component: () => import("@/views/ObjectControl.vue")
     },
+    {
+        path: '/camera-control',
+        name: 'CameraControl',
+        component: () => import("@/views/CameraControl.vue")
+    },
 ]
 
 const router = createRouter({
