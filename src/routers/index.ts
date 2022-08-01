@@ -33,6 +33,11 @@ const routes: RouteRecordRaw[] = [
         name: 'CameraControl',
         component: () => import("@/views/CameraControl.vue")
     },
+    {
+        path: '/orbit-control',
+        name: 'OrbitControl',
+        component: () => import("@/views/OrbitControl.vue")
+    },
 ]
 
 const router = createRouter({
